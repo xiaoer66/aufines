@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aufine.dao.AttachmentInfoDAO">
+  <resultMap id="BaseResultMap" type="com.aufine.entity.AttachmentInfo">
+    <id column="attachmentID" jdbcType="INTEGER" property="attachmentid" />
+    <result column="attachmentName" jdbcType="VARCHAR" property="attachmentname" />
+    <result column="attachmentSize" jdbcType="VARCHAR" property="attachmentsize" />
+    <result column="attachmentRelativePath" jdbcType="VARCHAR" property="attachmentrelativepath" />
+    <result column="attachmentAbsolutePath" jdbcType="VARCHAR" property="attachmentabsolutepath" />
+    <result column="attachmentSuffixName" jdbcType="VARCHAR" property="attachmentsuffixname" />
+    <result column="attachmentNote" jdbcType="VARCHAR" property="attachmentnote" />
+    <result column="createID" jdbcType="INTEGER" property="createid" />
+    <result column="createName" jdbcType="VARCHAR" property="createname" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateID" jdbcType="INTEGER" property="updateid" />
+    <result column="updateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="delFlag" jdbcType="SMALLINT" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    attachmentID, attachmentName, attachmentSize, attachmentRelativePath, attachmentAbsolutePath, 
+    attachmentSuffixName, attachmentNote, createID, createName, createTime, updateID, 
+    updateName, updateTime, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attachment_info
+    where attachmentID = #{attachmentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from attachment_info
+    where attachmentID = #{attachmentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aufine.entity.AttachmentInfo">
+    insert into attachment_info (attachmentID, attachmentName, attachmentSize, 
+      attachmentRelativePath, attachmentAbsolutePath, 
+      attachmentSuffixName, attachmentNote, createID, 
+      createName, createTime, updateID, 
+      updateName, updateTime, delFlag
+      )
+    values (#{attachmentid,jdbcType=INTEGER}, #{attachmentname,jdbcType=VARCHAR}, #{attachmentsize,jdbcType=VARCHAR}, 
+      #{attachmentrelativepath,jdbcType=VARCHAR}, #{attachmentabsolutepath,jdbcType=VARCHAR}, 
+      #{attachmentsuffixname,jdbcType=VARCHAR}, #{attachmentnote,jdbcType=VARCHAR}, #{createid,jdbcType=INTEGER}, 
+      #{createname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateid,jdbcType=INTEGER}, 
+      #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aufine.entity.AttachmentInfo">
+    insert into attachment_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attachmentid != null">
+        attachmentID,
+      </if>
+      <if test="attachmentname != null">
+        attachmentName,
+      </if>
+      <if test="attachmentsize != null">
+        attachmentSize,
+      </if>
+      <if test="attachmentrelativepath != null">
+        attachmentRelativePath,
+      </if>
+      <if test="attachmentabsolutepath != null">
+        attachmentAbsolutePath,
+      </if>
+      <if test="attachmentsuffixname != null">
+        attachmentSuffixName,
+      </if>
+      <if test="attachmentnote != null">
+        attachmentNote,
+      </if>
+      <if test="createid != null">
+        createID,
+      </if>
+      <if test="createname != null">
+        createName,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updateid != null">
+        updateID,
+      </if>
+      <if test="updatename != null">
+        updateName,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attachmentid != null">
+        #{attachmentid,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentname != null">
+        #{attachmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentsize != null">
+        #{attachmentsize,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentrelativepath != null">
+        #{attachmentrelativepath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentabsolutepath != null">
+        #{attachmentabsolutepath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentsuffixname != null">
+        #{attachmentsuffixname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentnote != null">
+        #{attachmentnote,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        #{updateid,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aufine.entity.AttachmentInfo">
+    update attachment_info
+    <set>
+      <if test="attachmentname != null">
+        attachmentName = #{attachmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentsize != null">
+        attachmentSize = #{attachmentsize,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentrelativepath != null">
+        attachmentRelativePath = #{attachmentrelativepath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentabsolutepath != null">
+        attachmentAbsolutePath = #{attachmentabsolutepath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentsuffixname != null">
+        attachmentSuffixName = #{attachmentsuffixname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentnote != null">
+        attachmentNote = #{attachmentnote,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        createID = #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createName = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        updateID = #{updateid,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        updateName = #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where attachmentID = #{attachmentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aufine.entity.AttachmentInfo">
+    update attachment_info
+    set attachmentName = #{attachmentname,jdbcType=VARCHAR},
+      attachmentSize = #{attachmentsize,jdbcType=VARCHAR},
+      attachmentRelativePath = #{attachmentrelativepath,jdbcType=VARCHAR},
+      attachmentAbsolutePath = #{attachmentabsolutepath,jdbcType=VARCHAR},
+      attachmentSuffixName = #{attachmentsuffixname,jdbcType=VARCHAR},
+      attachmentNote = #{attachmentnote,jdbcType=VARCHAR},
+      createID = #{createid,jdbcType=INTEGER},
+      createName = #{createname,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateID = #{updateid,jdbcType=INTEGER},
+      updateName = #{updatename,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=SMALLINT}
+    where attachmentID = #{attachmentid,jdbcType=INTEGER}
+  </update>
+</mapper>

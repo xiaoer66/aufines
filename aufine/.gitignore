@@ -30,4 +30,5 @@ HELP.md
 
 .mvn
 log
-.class
+*.class
+target

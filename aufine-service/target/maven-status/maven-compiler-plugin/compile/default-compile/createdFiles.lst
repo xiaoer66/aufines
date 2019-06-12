@@ -1,0 +1,8 @@
+com\aufine\service\RoleInfoService.class
+com\aufine\service\impl\RoleInfoServiceImpl.class
+com\aufine\service\impl\TyreInfoServiceImpl.class
+com\aufine\service\PermissionInfoService.class
+com\aufine\service\impl\UserInfoServiceImpl.class
+com\aufine\service\TyreInfoService.class
+com\aufine\service\impl\PermissionInfoServiceImpl.class
+com\aufine\service\UserInfoService.class
