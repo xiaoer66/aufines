@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aufine.dao.PermissionInfoDAO">
+  <resultMap id="BaseResultMap" type="com.aufine.entity.PermissionInfo">
+    <id column="permissionID" jdbcType="INTEGER" property="permissionid" />
+    <result column="permissionName" jdbcType="VARCHAR" property="permissionname" />
+    <result column="permissionZHName" jdbcType="VARCHAR" property="permissionzhname" />
+    <result column="permissionDescription" jdbcType="VARCHAR" property="permissiondescription" />
+    <result column="permissionUrl" jdbcType="VARCHAR" property="permissionurl" />
+    <result column="permissionPerms" jdbcType="VARCHAR" property="permissionperms" />
+    <result column="permissionPID" jdbcType="INTEGER" property="permissionpid" />
+    <result column="permissionType" jdbcType="SMALLINT" property="permissiontype" />
+    <result column="orderNum" jdbcType="VARCHAR" property="ordernum" />
+    <result column="iconID" jdbcType="INTEGER" property="iconid" />
+    <result column="createID" jdbcType="INTEGER" property="createid" />
+    <result column="createName" jdbcType="VARCHAR" property="createname" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateID" jdbcType="INTEGER" property="updateid" />
+    <result column="updateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="delFlag" jdbcType="SMALLINT" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    permissionID, permissionName, permissionZHName, permissionDescription, permissionUrl, 
+    permissionPerms, permissionPID, permissionType, orderNum, iconID, createID, createName, 
+    createTime, updateID, updateName, updateTime, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from permission_info
+    where permissionID = #{permissionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from permission_info
+    where permissionID = #{permissionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aufine.entity.PermissionInfo">
+    insert into permission_info (permissionID, permissionName, permissionZHName, 
+      permissionDescription, permissionUrl, permissionPerms, 
+      permissionPID, permissionType, orderNum, 
+      iconID, createID, createName, 
+      createTime, updateID, updateName, 
+      updateTime, delFlag)
+    values (#{permissionid,jdbcType=INTEGER}, #{permissionname,jdbcType=VARCHAR}, #{permissionzhname,jdbcType=VARCHAR}, 
+      #{permissiondescription,jdbcType=VARCHAR}, #{permissionurl,jdbcType=VARCHAR}, #{permissionperms,jdbcType=VARCHAR}, 
+      #{permissionpid,jdbcType=INTEGER}, #{permissiontype,jdbcType=SMALLINT}, #{ordernum,jdbcType=VARCHAR}, 
+      #{iconid,jdbcType=INTEGER}, #{createid,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateid,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aufine.entity.PermissionInfo">
+    insert into permission_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionid != null">
+        permissionID,
+      </if>
+      <if test="permissionname != null">
+        permissionName,
+      </if>
+      <if test="permissionzhname != null">
+        permissionZHName,
+      </if>
+      <if test="permissiondescription != null">
+        permissionDescription,
+      </if>
+      <if test="permissionurl != null">
+        permissionUrl,
+      </if>
+      <if test="permissionperms != null">
+        permissionPerms,
+      </if>
+      <if test="permissionpid != null">
+        permissionPID,
+      </if>
+      <if test="permissiontype != null">
+        permissionType,
+      </if>
+      <if test="ordernum != null">
+        orderNum,
+      </if>
+      <if test="iconid != null">
+        iconID,
+      </if>
+      <if test="createid != null">
+        createID,
+      </if>
+      <if test="createname != null">
+        createName,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updateid != null">
+        updateID,
+      </if>
+      <if test="updatename != null">
+        updateName,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionid != null">
+        #{permissionid,jdbcType=INTEGER},
+      </if>
+      <if test="permissionname != null">
+        #{permissionname,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionzhname != null">
+        #{permissionzhname,jdbcType=VARCHAR},
+      </if>
+      <if test="permissiondescription != null">
+        #{permissiondescription,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionurl != null">
+        #{permissionurl,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionperms != null">
+        #{permissionperms,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionpid != null">
+        #{permissionpid,jdbcType=INTEGER},
+      </if>
+      <if test="permissiontype != null">
+        #{permissiontype,jdbcType=SMALLINT},
+      </if>
+      <if test="ordernum != null">
+        #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="iconid != null">
+        #{iconid,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        #{updateid,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aufine.entity.PermissionInfo">
+    update permission_info
+    <set>
+      <if test="permissionname != null">
+        permissionName = #{permissionname,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionzhname != null">
+        permissionZHName = #{permissionzhname,jdbcType=VARCHAR},
+      </if>
+      <if test="permissiondescription != null">
+        permissionDescription = #{permissiondescription,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionurl != null">
+        permissionUrl = #{permissionurl,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionperms != null">
+        permissionPerms = #{permissionperms,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionpid != null">
+        permissionPID = #{permissionpid,jdbcType=INTEGER},
+      </if>
+      <if test="permissiontype != null">
+        permissionType = #{permissiontype,jdbcType=SMALLINT},
+      </if>
+      <if test="ordernum != null">
+        orderNum = #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="iconid != null">
+        iconID = #{iconid,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        createID = #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createName = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        updateID = #{updateid,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        updateName = #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where permissionID = #{permissionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aufine.entity.PermissionInfo">
+    update permission_info
+    set permissionName = #{permissionname,jdbcType=VARCHAR},
+      permissionZHName = #{permissionzhname,jdbcType=VARCHAR},
+      permissionDescription = #{permissiondescription,jdbcType=VARCHAR},
+      permissionUrl = #{permissionurl,jdbcType=VARCHAR},
+      permissionPerms = #{permissionperms,jdbcType=VARCHAR},
+      permissionPID = #{permissionpid,jdbcType=INTEGER},
+      permissionType = #{permissiontype,jdbcType=SMALLINT},
+      orderNum = #{ordernum,jdbcType=VARCHAR},
+      iconID = #{iconid,jdbcType=INTEGER},
+      createID = #{createid,jdbcType=INTEGER},
+      createName = #{createname,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateID = #{updateid,jdbcType=INTEGER},
+      updateName = #{updatename,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=SMALLINT}
+    where permissionID = #{permissionid,jdbcType=INTEGER}
+  </update>
+
+  <!--============================================新增ResultMap===============================================-->
+  <resultMap id="PRResultMap" type="com.aufine.bean.PermissionRoleBean">
+    <id column="permissionID" jdbcType="INTEGER" property="permissionid" />
+    <result column="permissionName" jdbcType="VARCHAR" property="permissionname" />
+    <result column="permissionZHName" jdbcType="VARCHAR" property="permissionzhname" />
+    <result column="permissionDescription" jdbcType="VARCHAR" property="permissiondescription" />
+    <result column="permissionUrl" jdbcType="VARCHAR" property="permissionurl" />
+    <result column="permissionPerms" jdbcType="VARCHAR" property="permissionperms" />
+    <result column="permissionPID" jdbcType="INTEGER" property="permissionpid" />
+    <result column="permissionType" jdbcType="SMALLINT" property="permissiontype" />
+    <result column="orderNum" jdbcType="VARCHAR" property="ordernum" />
+    <result column="iconID" jdbcType="INTEGER" property="iconid" />
+    <collection property="roleInfos" ofType="com.aufine.entity.RoleInfo">
+      <id column="roleID" property="roleid"/>
+      <result column="rolename" property="rolename"/>
+      <result column="rolezhname" property="rolezhname"/>
+    </collection>
+    <collection property="childrenPermissionInfos" ofType="com.aufine.bean.PermissionRoleBean">
+      <id column="permissionid2" property="permissionid"/>
+      <result column="permissionName2" jdbcType="VARCHAR" property="permissionname" />
+      <result column="permissionZHName2" jdbcType="VARCHAR" property="permissionzhname" />
+      <result column="permissionDescription2" jdbcType="VARCHAR" property="permissiondescription" />
+      <result column="permissionUrl2" jdbcType="VARCHAR" property="permissionurl" />
+      <result column="permissionPerms2" jdbcType="VARCHAR" property="permissionperms" />
+      <result column="permissionPID2" jdbcType="INTEGER" property="permissionpid" />
+      <result column="permissionType2" jdbcType="SMALLINT" property="permissiontype" />
+      <result column="orderNum2" jdbcType="VARCHAR" property="ordernum" />
+      <result column="iconID2" jdbcType="INTEGER" property="iconid" />
+      <collection property="childrenPermissionInfos" ofType="com.aufine.bean.PermissionRoleBean">
+        <id column="permissionid3" property="permissionid"/>
+        <result column="permissionName3" jdbcType="VARCHAR" property="permissionname" />
+        <result column="permissionZHName3" jdbcType="VARCHAR" property="permissionzhname" />
+        <result column="permissionDescription3" jdbcType="VARCHAR" property="permissiondescription" />
+        <result column="permissionUrl3" jdbcType="VARCHAR" property="permissionurl" />
+        <result column="permissionPerms3" jdbcType="VARCHAR" property="permissionperms" />
+        <result column="permissionPID3" jdbcType="INTEGER" property="permissionpid" />
+        <result column="permissionType3" jdbcType="SMALLINT" property="permissiontype" />
+        <result column="orderNum3" jdbcType="VARCHAR" property="ordernum" />
+        <result column="iconID3" jdbcType="INTEGER" property="iconid" />
+      </collection>
+    </collection>
+  </resultMap>
+
+  <!--============================================新增查询方法===============================================-->
+
+
+  <select id="getAllPermission" parameterType="java.lang.String" resultMap="PRResultMap">
+    select
+      p.*,
+      r.`roleID`,
+      r.`roleName`,
+      r.`roleZHName`
+    from
+      permission_info p
+      left join role_permission rp
+        on p.`permissionID` = rp.`permissionID`
+      left join `role_info` r
+        on rp.`roleID` = r.`roleID`
+    WHERE p.`delFlag` = 0
+    order by p.`permissionID` asc
+  </select>
+</mapper>
