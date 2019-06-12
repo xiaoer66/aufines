@@ -1,6 +1,6 @@
 #端口和tomcat相关配置
 server:
-  port: 8081
+  port: 8099
   servlet:
     session:
       timeout: 30
