@@ -33,3 +33,4 @@ HELP.md
 *.gz
 *.class
 target
+.idea
