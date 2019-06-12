@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aufine.dao.AxlePositionInfoDAO">
+  <resultMap id="BaseResultMap" type="com.aufine.entity.AxlePositionInfo">
+    <id column="axlePositionID" jdbcType="INTEGER" property="axlepositionid" />
+    <result column="vehicleTypeCodeID" jdbcType="INTEGER" property="vehicletypecodeid" />
+    <result column="isGuideWheelType" jdbcType="SMALLINT" property="isguidewheeltype" />
+    <result column="isDrivingWheelType" jdbcType="SMALLINT" property="isdrivingwheeltype" />
+    <result column="isTrailerWheelType" jdbcType="SMALLINT" property="istrailerwheeltype" />
+    <result column="createID" jdbcType="INTEGER" property="createid" />
+    <result column="createName" jdbcType="VARCHAR" property="createname" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateID" jdbcType="INTEGER" property="updateid" />
+    <result column="updateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="delFlag" jdbcType="SMALLINT" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    axlePositionID, vehicleTypeCodeID, isGuideWheelType, isDrivingWheelType, isTrailerWheelType, 
+    createID, createName, createTime, updateID, updateName, updateTime, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from axle_position_info
+    where axlePositionID = #{axlepositionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from axle_position_info
+    where axlePositionID = #{axlepositionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aufine.entity.AxlePositionInfo">
+    insert into axle_position_info (axlePositionID, vehicleTypeCodeID, 
+      isGuideWheelType, isDrivingWheelType, 
+      isTrailerWheelType, createID, createName, 
+      createTime, updateID, updateName, 
+      updateTime, delFlag)
+    values (#{axlepositionid,jdbcType=INTEGER}, #{vehicletypecodeid,jdbcType=INTEGER}, 
+      #{isguidewheeltype,jdbcType=SMALLINT}, #{isdrivingwheeltype,jdbcType=SMALLINT}, 
+      #{istrailerwheeltype,jdbcType=SMALLINT}, #{createid,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateid,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aufine.entity.AxlePositionInfo">
+    insert into axle_position_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="axlepositionid != null">
+        axlePositionID,
+      </if>
+      <if test="vehicletypecodeid != null">
+        vehicleTypeCodeID,
+      </if>
+      <if test="isguidewheeltype != null">
+        isGuideWheelType,
+      </if>
+      <if test="isdrivingwheeltype != null">
+        isDrivingWheelType,
+      </if>
+      <if test="istrailerwheeltype != null">
+        isTrailerWheelType,
+      </if>
+      <if test="createid != null">
+        createID,
+      </if>
+      <if test="createname != null">
+        createName,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updateid != null">
+        updateID,
+      </if>
+      <if test="updatename != null">
+        updateName,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="axlepositionid != null">
+        #{axlepositionid,jdbcType=INTEGER},
+      </if>
+      <if test="vehicletypecodeid != null">
+        #{vehicletypecodeid,jdbcType=INTEGER},
+      </if>
+      <if test="isguidewheeltype != null">
+        #{isguidewheeltype,jdbcType=SMALLINT},
+      </if>
+      <if test="isdrivingwheeltype != null">
+        #{isdrivingwheeltype,jdbcType=SMALLINT},
+      </if>
+      <if test="istrailerwheeltype != null">
+        #{istrailerwheeltype,jdbcType=SMALLINT},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        #{updateid,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aufine.entity.AxlePositionInfo">
+    update axle_position_info
+    <set>
+      <if test="vehicletypecodeid != null">
+        vehicleTypeCodeID = #{vehicletypecodeid,jdbcType=INTEGER},
+      </if>
+      <if test="isguidewheeltype != null">
+        isGuideWheelType = #{isguidewheeltype,jdbcType=SMALLINT},
+      </if>
+      <if test="isdrivingwheeltype != null">
+        isDrivingWheelType = #{isdrivingwheeltype,jdbcType=SMALLINT},
+      </if>
+      <if test="istrailerwheeltype != null">
+        isTrailerWheelType = #{istrailerwheeltype,jdbcType=SMALLINT},
+      </if>
+      <if test="createid != null">
+        createID = #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createName = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        updateID = #{updateid,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        updateName = #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where axlePositionID = #{axlepositionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aufine.entity.AxlePositionInfo">
+    update axle_position_info
+    set vehicleTypeCodeID = #{vehicletypecodeid,jdbcType=INTEGER},
+      isGuideWheelType = #{isguidewheeltype,jdbcType=SMALLINT},
+      isDrivingWheelType = #{isdrivingwheeltype,jdbcType=SMALLINT},
+      isTrailerWheelType = #{istrailerwheeltype,jdbcType=SMALLINT},
+      createID = #{createid,jdbcType=INTEGER},
+      createName = #{createname,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateID = #{updateid,jdbcType=INTEGER},
+      updateName = #{updatename,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=SMALLINT}
+    where axlePositionID = #{axlepositionid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: com-zuul
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: com-zuul
+      profile: dev
+
+eureka:
+  client:
+    service-url:
+      dev : http://localhost:8761/eureka
+server:
+  port: 8081
+
+# routes to com-server
+zuul:
+  routes:
+    service1:
+      path: /com-server/**
+      serviceId: com-server
+      connect-timeout-millis: 3000
+  sensitive-headers: Cookie,Set-Cookie
