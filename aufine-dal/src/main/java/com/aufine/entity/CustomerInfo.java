@@ -1,5 +1,6 @@
 package com.aufine.entity;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -59,8 +60,9 @@ public class CustomerInfo implements Serializable {
     /**
      * 邮箱
      */
-    @NotNull
-    @NotBlank
+    @Email(regexp = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}")
+    @NotNull(message = "邮箱不能为空")
+    @NotBlank(message = "邮箱不能为空")
     private String email;
 
     /**
