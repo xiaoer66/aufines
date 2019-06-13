@@ -41,6 +41,16 @@ spring:
     timeout: 60000
   application:
     name: aufine-web
+# 设置上传文件最大限制
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 52428800
+
+
+#文件存储路径
+prop:
+  upload-folder: E:\upload\
 
 
 #mybatie配置

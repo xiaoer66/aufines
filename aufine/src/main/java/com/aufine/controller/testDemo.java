@@ -46,6 +46,7 @@ public class testDemo {
     @RequestMapping("/manager/testUrl")
     public String test1() {
         List<PermissionRoleBean> resources2 = permissionInfoService.getAllPermission();
+        System.out.println(releasePaths.getIgnoringPaths());
         System.out.println(gson.toJson(resources2));
         return gson.toJson(resources2);
     }
