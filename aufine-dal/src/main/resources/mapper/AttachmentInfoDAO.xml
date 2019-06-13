@@ -3,7 +3,8 @@
 <mapper namespace="com.aufine.dao.AttachmentInfoDAO">
   <resultMap id="BaseResultMap" type="com.aufine.entity.AttachmentInfo">
     <id column="attachmentID" jdbcType="INTEGER" property="attachmentid" />
-    <result column="attachmentName" jdbcType="VARCHAR" property="attachmentname" />
+    <result column="attachmentNewName" jdbcType="VARCHAR" property="attachmentnewname" />
+    <result column="attachmentOldName" jdbcType="VARCHAR" property="attachmentoldname" />
     <result column="attachmentSize" jdbcType="VARCHAR" property="attachmentsize" />
     <result column="attachmentRelativePath" jdbcType="VARCHAR" property="attachmentrelativepath" />
     <result column="attachmentAbsolutePath" jdbcType="VARCHAR" property="attachmentabsolutepath" />
@@ -18,12 +19,12 @@
     <result column="delFlag" jdbcType="SMALLINT" property="delflag" />
   </resultMap>
   <sql id="Base_Column_List">
-    attachmentID, attachmentName, attachmentSize, attachmentRelativePath, attachmentAbsolutePath, 
-    attachmentSuffixName, attachmentNote, createID, createName, createTime, updateID, 
-    updateName, updateTime, delFlag
+    attachmentID, attachmentNewName, attachmentOldName, attachmentSize, attachmentRelativePath,
+    attachmentAbsolutePath, attachmentSuffixName, attachmentNote, createID, createName,
+    createTime, updateID, updateName, updateTime, delFlag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from attachment_info
     where attachmentID = #{attachmentid,jdbcType=INTEGER}
@@ -33,27 +34,33 @@
     where attachmentID = #{attachmentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.aufine.entity.AttachmentInfo">
-    insert into attachment_info (attachmentID, attachmentName, attachmentSize, 
-      attachmentRelativePath, attachmentAbsolutePath, 
-      attachmentSuffixName, attachmentNote, createID, 
-      createName, createTime, updateID, 
-      updateName, updateTime, delFlag
-      )
-    values (#{attachmentid,jdbcType=INTEGER}, #{attachmentname,jdbcType=VARCHAR}, #{attachmentsize,jdbcType=VARCHAR}, 
-      #{attachmentrelativepath,jdbcType=VARCHAR}, #{attachmentabsolutepath,jdbcType=VARCHAR}, 
-      #{attachmentsuffixname,jdbcType=VARCHAR}, #{attachmentnote,jdbcType=VARCHAR}, #{createid,jdbcType=INTEGER}, 
-      #{createname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateid,jdbcType=INTEGER}, 
-      #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=SMALLINT}
-      )
+    insert into attachment_info (attachmentID, attachmentNewName,
+      attachmentOldName, attachmentSize, attachmentRelativePath,
+      attachmentAbsolutePath, attachmentSuffixName,
+      attachmentNote, createID, createName,
+      createTime, updateID, updateName,
+      updateTime, delFlag)
+    values (#{attachmentid,jdbcType=INTEGER}, #{attachmentnewname,jdbcType=VARCHAR},
+      #{attachmentoldname,jdbcType=VARCHAR}, #{attachmentsize,jdbcType=VARCHAR}, #{attachmentrelativepath,jdbcType=VARCHAR},
+      #{attachmentabsolutepath,jdbcType=VARCHAR}, #{attachmentsuffixname,jdbcType=VARCHAR},
+      #{attachmentnote,jdbcType=VARCHAR}, #{createid,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR},
+      #{createtime,jdbcType=TIMESTAMP}, #{updateid,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR},
+      #{updatetime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=SMALLINT})
   </insert>
   <insert id="insertSelective" parameterType="com.aufine.entity.AttachmentInfo">
+    <selectKey resultType="integer" order="AFTER" keyProperty="attachmentid">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into attachment_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="attachmentid != null">
         attachmentID,
       </if>
-      <if test="attachmentname != null">
-        attachmentName,
+      <if test="attachmentnewname != null">
+        attachmentNewName,
+      </if>
+      <if test="attachmentoldname != null">
+        attachmentOldName,
       </if>
       <if test="attachmentsize != null">
         attachmentSize,
@@ -96,8 +103,11 @@
       <if test="attachmentid != null">
         #{attachmentid,jdbcType=INTEGER},
       </if>
-      <if test="attachmentname != null">
-        #{attachmentname,jdbcType=VARCHAR},
+      <if test="attachmentnewname != null">
+        #{attachmentnewname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentoldname != null">
+        #{attachmentoldname,jdbcType=VARCHAR},
       </if>
       <if test="attachmentsize != null">
         #{attachmentsize,jdbcType=VARCHAR},
@@ -140,8 +150,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.aufine.entity.AttachmentInfo">
     update attachment_info
     <set>
-      <if test="attachmentname != null">
-        attachmentName = #{attachmentname,jdbcType=VARCHAR},
+      <if test="attachmentnewname != null">
+        attachmentNewName = #{attachmentnewname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentoldname != null">
+        attachmentOldName = #{attachmentoldname,jdbcType=VARCHAR},
       </if>
       <if test="attachmentsize != null">
         attachmentSize = #{attachmentsize,jdbcType=VARCHAR},
@@ -184,7 +197,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.aufine.entity.AttachmentInfo">
     update attachment_info
-    set attachmentName = #{attachmentname,jdbcType=VARCHAR},
+    set attachmentNewName = #{attachmentnewname,jdbcType=VARCHAR},
+      attachmentOldName = #{attachmentoldname,jdbcType=VARCHAR},
       attachmentSize = #{attachmentsize,jdbcType=VARCHAR},
       attachmentRelativePath = #{attachmentrelativepath,jdbcType=VARCHAR},
       attachmentAbsolutePath = #{attachmentabsolutepath,jdbcType=VARCHAR},
@@ -199,4 +213,11 @@
       delFlag = #{delflag,jdbcType=SMALLINT}
     where attachmentID = #{attachmentid,jdbcType=INTEGER}
   </update>
+
+  <!--============================================新增查询方法===============================================-->
+  <select id="getMaxAttachmentID" resultType="int">
+    select
+      max(a.attachmentID)+1
+    from attachment_info a
+  </select>
 </mapper>

@@ -25,8 +25,8 @@ public class PrintWriterUtil {
             out.print(gson.toJson(o));
             out.flush();
             out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
         }
     }
 }

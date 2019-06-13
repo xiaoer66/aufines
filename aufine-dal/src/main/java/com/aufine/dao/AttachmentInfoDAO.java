@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface AttachmentInfoDAO extends MyBatisBaseDao<AttachmentInfo, Integer> {
+    int getMaxAttachmentID();
 }

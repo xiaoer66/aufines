@@ -1,4 +1,4 @@
-package com.aufine.util.common;
+package com.aufine.bean.common;
 
 import lombok.Getter;
 import lombok.Setter;
