@@ -34,14 +34,16 @@ public class CustomerInfoController {
             List<CustomerInfo> list = customerInfoService.selectAllCustomerInfo();
             boolean result = true;
             for(CustomerInfo customer:list){
-                if(customerInfo.getEmail().equals(customer.getEmail())){
-                    ajaxResponseBody.setStatus("failure");
-                    ajaxResponseBody.setMsg("邮箱不能重复提交");
-                    result = false;
-                }
+
                 if(customerInfo.getPhone().equals(customer.getPhone())){
                     ajaxResponseBody.setStatus("failure");
                     ajaxResponseBody.setMsg("手机不能重复提交");
+                    result = false;
+                }
+
+                if(customerInfo.getEmail().equals(customer.getEmail())){
+                    ajaxResponseBody.setStatus("failure");
+                    ajaxResponseBody.setMsg("邮箱不能重复提交");
                     result = false;
                 }
             }
