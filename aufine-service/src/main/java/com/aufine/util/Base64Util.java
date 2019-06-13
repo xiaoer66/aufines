@@ -1,10 +1,11 @@
 package com.aufine.util;
 
 
-import java.io.IOException;
-import java.util.Base64;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
+
+import java.io.IOException;
+import java.util.Base64;
 
 /**
  * Base64加密工具类

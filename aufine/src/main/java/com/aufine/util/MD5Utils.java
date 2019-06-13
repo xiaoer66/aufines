@@ -1,9 +1,10 @@
 package com.aufine.util;
 
+import org.springframework.security.crypto.codec.Hex;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-import org.springframework.security.crypto.codec.Hex;
 
 public class MD5Utils {
 

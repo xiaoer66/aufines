@@ -2,10 +2,6 @@ package com.aufine.securityconfig;
 
 import com.aufine.bean.AjaxResponseBody;
 import com.google.gson.Gson;
-import com.aufine.util.Base64Util;
-import com.aufine.util.CharacterUtils;
-import com.aufine.util.PrintWriterUtil;
-import com.aufine.util.RedisUtil;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;

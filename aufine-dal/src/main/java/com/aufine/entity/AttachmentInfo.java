@@ -14,9 +14,14 @@ public class AttachmentInfo implements Serializable {
     private Integer attachmentid;
 
     /**
-     * 附件名称
+     * 附件现名称
      */
-    private String attachmentname;
+    private String attachmentnewname;
+
+    /**
+     * 附件原名称
+     */
+    private String attachmentoldname;
 
     /**
      * 附件大小(kb)
@@ -88,12 +93,20 @@ public class AttachmentInfo implements Serializable {
         this.attachmentid = attachmentid;
     }
 
-    public String getAttachmentname() {
-        return attachmentname;
+    public String getAttachmentnewname() {
+        return attachmentnewname;
     }
 
-    public void setAttachmentname(String attachmentname) {
-        this.attachmentname = attachmentname;
+    public void setAttachmentnewname(String attachmentnewname) {
+        this.attachmentnewname = attachmentnewname;
+    }
+
+    public String getAttachmentoldname() {
+        return attachmentoldname;
+    }
+
+    public void setAttachmentoldname(String attachmentoldname) {
+        this.attachmentoldname = attachmentoldname;
     }
 
     public String getAttachmentsize() {
@@ -205,7 +218,8 @@ public class AttachmentInfo implements Serializable {
         }
         AttachmentInfo other = (AttachmentInfo) that;
         return (this.getAttachmentid() == null ? other.getAttachmentid() == null : this.getAttachmentid().equals(other.getAttachmentid()))
-            && (this.getAttachmentname() == null ? other.getAttachmentname() == null : this.getAttachmentname().equals(other.getAttachmentname()))
+            && (this.getAttachmentnewname() == null ? other.getAttachmentnewname() == null : this.getAttachmentnewname().equals(other.getAttachmentnewname()))
+            && (this.getAttachmentoldname() == null ? other.getAttachmentoldname() == null : this.getAttachmentoldname().equals(other.getAttachmentoldname()))
             && (this.getAttachmentsize() == null ? other.getAttachmentsize() == null : this.getAttachmentsize().equals(other.getAttachmentsize()))
             && (this.getAttachmentrelativepath() == null ? other.getAttachmentrelativepath() == null : this.getAttachmentrelativepath().equals(other.getAttachmentrelativepath()))
             && (this.getAttachmentabsolutepath() == null ? other.getAttachmentabsolutepath() == null : this.getAttachmentabsolutepath().equals(other.getAttachmentabsolutepath()))
@@ -225,7 +239,8 @@ public class AttachmentInfo implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAttachmentid() == null) ? 0 : getAttachmentid().hashCode());
-        result = prime * result + ((getAttachmentname() == null) ? 0 : getAttachmentname().hashCode());
+        result = prime * result + ((getAttachmentnewname() == null) ? 0 : getAttachmentnewname().hashCode());
+        result = prime * result + ((getAttachmentoldname() == null) ? 0 : getAttachmentoldname().hashCode());
         result = prime * result + ((getAttachmentsize() == null) ? 0 : getAttachmentsize().hashCode());
         result = prime * result + ((getAttachmentrelativepath() == null) ? 0 : getAttachmentrelativepath().hashCode());
         result = prime * result + ((getAttachmentabsolutepath() == null) ? 0 : getAttachmentabsolutepath().hashCode());
@@ -248,7 +263,8 @@ public class AttachmentInfo implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", attachmentid=").append(attachmentid);
-        sb.append(", attachmentname=").append(attachmentname);
+        sb.append(", attachmentnewname=").append(attachmentnewname);
+        sb.append(", attachmentoldname=").append(attachmentoldname);
         sb.append(", attachmentsize=").append(attachmentsize);
         sb.append(", attachmentrelativepath=").append(attachmentrelativepath);
         sb.append(", attachmentabsolutepath=").append(attachmentabsolutepath);

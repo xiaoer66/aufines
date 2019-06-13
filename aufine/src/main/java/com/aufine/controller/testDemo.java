@@ -5,8 +5,6 @@ import com.aufine.bean.PermissionRoleBean;
 import com.aufine.dao.PermissionInfoDAO;
 import com.aufine.dao.TyreInfoDAO;
 import com.google.gson.Gson;
-import com.aufine.util.RedisUtil;
-import com.aufine.util.common.ReleasePaths;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

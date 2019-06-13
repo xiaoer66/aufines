@@ -1,9 +1,7 @@
 package com.aufine.jwtconfig;
 
-import com.aufine.util.*;
 import com.aufine.bean.AjaxResponseBody;
 import com.google.gson.Gson;
-import com.aufine.util.common.AufineSystemConfig;
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

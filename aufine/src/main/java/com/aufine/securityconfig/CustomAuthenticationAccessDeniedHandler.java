@@ -1,7 +1,6 @@
 package com.aufine.securityconfig;
 
 import com.aufine.bean.AjaxResponseBody;
-import com.aufine.util.PrintWriterUtil;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
