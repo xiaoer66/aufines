@@ -18,15 +18,15 @@ public class CustomerInfo implements Serializable {
     /**
      * 名
      */
-    @NotNull
-    @NotBlank
+    @NotNull(message = "名不能为空")
+    @NotBlank(message = "名不能为空")
     private String firstname;
 
     /**
      * 姓
      */
-    @NotNull
-    @NotBlank
+    @NotNull(message = "姓不能为空")
+    @NotBlank(message = "姓不能为空")
     private String lastname;
 
     /**
@@ -52,8 +52,8 @@ public class CustomerInfo implements Serializable {
     /**
      * 国家
      */
-    @NotNull
-    @NotBlank
+    @NotNull(message = "国家不能为空")
+    @NotBlank(message = "国家不能为空")
     private String country;
 
     /**
@@ -66,13 +66,15 @@ public class CustomerInfo implements Serializable {
     /**
      * 联系电话
      */
-    @NotNull
-    @NotBlank
+    @NotNull(message = "联系电话不能为空")
+    @NotBlank(message = "联系电话不能为空")
     private String phone;
 
     /**
      * 客户留言信息
      */
+    @NotNull(message = "客户留言信息不能为空")
+    @NotBlank(message = "客户留言信息不能为空")
     private String customermsgid;
 
     /**

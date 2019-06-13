@@ -34,7 +34,8 @@ public class CustomerInfoController {
             return ajaxResponseBody;
         } catch (Exception e) {
             logger.debug(e.getMessage());
-            ajaxResponseBody.setResult(e.getMessage());
+            //ajaxResponseBody.setResult(e.getMessage());
+            ajaxResponseBody.setResult("23");
             return ajaxResponseBody;
         }
 
