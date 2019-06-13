@@ -10,8 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.List;
+
 @Service
 public class CustomerInfoImpl implements CustomerInfoService {
+
     private final static Logger logger = LoggerFactory.getLogger(CustomerInfoImpl.class);
 
     @Autowired
@@ -22,7 +25,8 @@ public class CustomerInfoImpl implements CustomerInfoService {
         AjaxResponseBody ajaxResponseBody = new AjaxResponseBody();
         try {
             customerInfoDAO.insert(customerInfo);
-            ajaxResponseBody.setResult("success");
+            ajaxResponseBody.setStatus("success");
+            ajaxResponseBody.setMsg("成功插入数据");
         } catch (Exception e) {
             logger.debug(e.getMessage());
             e.printStackTrace();
@@ -31,4 +35,11 @@ public class CustomerInfoImpl implements CustomerInfoService {
         }
         return ajaxResponseBody;
     }
+
+    @Override
+    public List<CustomerInfo> selectAllCustomerInfo() {
+        return customerInfoDAO.selectAllCustomerInfo();
+    }
+
+
 }
