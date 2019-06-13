@@ -7,7 +7,17 @@ import java.util.List;
 
 public interface CustomerInfoService {
 
+    /**
+     * contact模块将表单插入数据
+     * @param customerInfo
+     * @return
+     */
     AjaxResponseBody insertCustomer(CustomerInfo customerInfo);
 
-    List<CustomerInfo> customerInfo(String email,String phone);
+    /**
+     * 查询所有的customer信息
+     * @return
+     */
+    List<CustomerInfo> selectAllCustomerInfo();
+
 }

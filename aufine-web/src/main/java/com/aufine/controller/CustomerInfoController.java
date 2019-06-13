@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.util.ObjectUtils.*;
@@ -30,12 +31,28 @@ public class CustomerInfoController {
     public AjaxResponseBody insertCustomerInfo(@Valid @ModelAttribute CustomerInfo customerInfo){
         AjaxResponseBody  ajaxResponseBody = new AjaxResponseBody();
         try {
-            ajaxResponseBody = customerInfoService.insertCustomer(customerInfo);
+            List<CustomerInfo> list = customerInfoService.selectAllCustomerInfo();
+            boolean result = true;
+            for(CustomerInfo customer:list){
+                if(customerInfo.getEmail().equals(customer.getEmail())){
+                    ajaxResponseBody.setStatus("failure");
+                    ajaxResponseBody.setMsg("邮箱不能重复提交");
+                    result = false;
+                }
+                if(customerInfo.getPhone().equals(customer.getPhone())){
+                    ajaxResponseBody.setStatus("failure");
+                    ajaxResponseBody.setMsg("手机不能重复提交");
+                    result = false;
+                }
+            }
+            if(result){
+                ajaxResponseBody = customerInfoService.insertCustomer(customerInfo);
+            }
             return ajaxResponseBody;
         } catch (Exception e) {
             logger.debug(e.getMessage());
             //ajaxResponseBody.setResult(e.getMessage());
-            ajaxResponseBody.setResult("23");
+            ajaxResponseBody.setResult(e.getMessage());
             return ajaxResponseBody;
         }
 

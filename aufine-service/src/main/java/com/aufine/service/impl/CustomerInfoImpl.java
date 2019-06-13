@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 public class CustomerInfoImpl implements CustomerInfoService {
+
     private final static Logger logger = LoggerFactory.getLogger(CustomerInfoImpl.class);
 
     @Autowired
@@ -36,7 +37,9 @@ public class CustomerInfoImpl implements CustomerInfoService {
     }
 
     @Override
-    public List<CustomerInfo> customerInfo(String email, String phone) {
-        return null;
+    public List<CustomerInfo> selectAllCustomerInfo() {
+        return customerInfoDAO.selectAllCustomerInfo();
     }
+
+
 }
