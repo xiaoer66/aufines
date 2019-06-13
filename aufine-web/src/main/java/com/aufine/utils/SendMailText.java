@@ -1,4 +1,6 @@
 package com.aufine.utils;
+import com.aufine.entity.CustomerInfo;
+import com.aufine.entity.EmailSetting;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -17,15 +19,20 @@ import javax.mail.internet.*;
 public class SendMailText {
 
     //发件人地址
-    public static String senderAddress = "15711450175@163.com";
+    //public static String senderAddress = "15711450175@163.com";
     //收件人地址
     //public static String recipientAddress = "1497651347@qq.com";
     //发件人账户名
-    public static String senderAccount = "15711450175";
+   // public static String senderAccount = "15711450175";
     //发件人账户密码
-    public static String senderPassword = "aufine2019";
+    //public static String senderPassword = "";
 
-    public static void SendEmail(String recipientAddress) {
+    /**
+     *  发送邮件
+     * @param emailSetting  查询发送邮件的基本信息，比如发件人，授权码。。
+     * @param customerInfo  将客户填写的数据插入到数据库
+     */
+    public static void SendEmail(EmailSetting emailSetting, CustomerInfo customerInfo) {
         //1、连接邮件服务器的参数配置
         Properties props = new Properties();
         //设置用户的认证方式
@@ -40,11 +47,11 @@ public class SendMailText {
         session.setDebug(true);
         //3、创建邮件的实例对象
         try {
-            Message msg = getMimeMessage(session,recipientAddress);
+            Message msg = getMimeMessage(session,emailSetting,customerInfo);
             //4、根据session对象获取邮件传输对象Transport
             Transport transport = session.getTransport();
             //设置发件人的账户名和密码
-            transport.connect(senderAccount, senderPassword);
+            transport.connect(emailSetting.getSenderaccount(), emailSetting.getSenderpassword());
             //发送邮件，并发送到所有收件人地址，message.getAllRecipients() 获取到的是在创建邮件对象时添加的所有收件人, 抄送人, 密送人
             transport.sendMessage(msg,msg.getAllRecipients());
 
@@ -65,20 +72,20 @@ public class SendMailText {
      * @throws MessagingException
      * @throws AddressException
      */
-    public static MimeMessage getMimeMessage(Session session,String recipientAddress) throws Exception{
+    public static MimeMessage getMimeMessage(Session session,EmailSetting emailSetting,CustomerInfo customerInfo) throws Exception{
         //创建一封邮件的实例对象
         MimeMessage msg = new MimeMessage(session);
 
 
         //设置发件人地址
-        msg.setFrom(new InternetAddress(senderAddress));
+        msg.setFrom(new InternetAddress(emailSetting.getSenderaddress()));
         /**
          * 设置收件人地址（可以增加多个收件人、抄送、密送），即下面这一行代码书写多行
          * MimeMessage.RecipientType.TO:发送
          * MimeMessage.RecipientType.CC：抄送
          * MimeMessage.RecipientType.BCC：密送
          */
-        msg.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(recipientAddress));
+        msg.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(customerInfo.getEmail()));
         //设置邮件主题
         msg.setSubject("邮件主题","UTF-8");
         //设置邮件正文

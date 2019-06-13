@@ -2,7 +2,9 @@ package com.aufine.controller;
 
 import com.aufine.bean.AjaxResponseBody;
 import com.aufine.entity.CustomerInfo;
+import com.aufine.entity.EmailSetting;
 import com.aufine.service.CustomerInfoService;
+import com.aufine.service.EmailSettingService;
 import com.aufine.service.impl.CustomerInfoImpl;
 import com.aufine.utils.SendMailText;
 import org.slf4j.Logger;
@@ -28,6 +30,9 @@ public class CustomerInfoController {
     @Autowired
     private CustomerInfoService customerInfoService;
 
+    @Autowired
+    private EmailSettingService emailSettingService;
+
     @RequestMapping(value = "/customer/insertform",method = RequestMethod.POST)
     public AjaxResponseBody insertCustomerInfo(@Valid @ModelAttribute CustomerInfo customerInfo){
         AjaxResponseBody  ajaxResponseBody = new AjaxResponseBody();
@@ -50,14 +55,19 @@ public class CustomerInfoController {
                     result = false;
                 }
             }
+
             if(result){
+                EmailSetting emailSetting = emailSettingService.getEmailSetting(1);
                 ajaxResponseBody = customerInfoService.insertCustomer(customerInfo);
-                SendMailText.SendEmail(customerInfo.getEmail());
+                //customerInfo  将客户填写的数据插入到数据库
+                //emailSetting  查询发送邮件的基本信息，比如发件人，授权码。。
+                SendMailText.SendEmail(emailSetting,customerInfo);
                 logger.debug("成功插入数据");
             }
             return ajaxResponseBody;
         } catch (Exception e) {
-            logger.debug(e.getMessage());
+            logger.info(e.getMessage());
+            e.printStackTrace();
             //ajaxResponseBody.setResult(e.getMessage());
             ajaxResponseBody.setResult(e.getMessage());
             return ajaxResponseBody;

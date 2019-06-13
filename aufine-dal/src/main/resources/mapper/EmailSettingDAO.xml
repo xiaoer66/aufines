@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aufine.dao.EmailSettingDAO">
+  <resultMap id="BaseResultMap" type="com.aufine.entity.EmailSetting">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="senderAddress" jdbcType="VARCHAR" property="senderaddress" />
+    <result column="senderAccount" jdbcType="VARCHAR" property="senderaccount" />
+    <result column="senderPassword" jdbcType="VARCHAR" property="senderpassword" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, senderAddress, senderAccount, senderPassword, subject
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from email_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from email_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.aufine.entity.EmailSetting" useGeneratedKeys="true">
+    insert into email_setting (senderAddress, senderAccount, senderPassword, 
+      subject)
+    values (#{senderaddress,jdbcType=VARCHAR}, #{senderaccount,jdbcType=VARCHAR}, #{senderpassword,jdbcType=VARCHAR}, 
+      #{subject,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.aufine.entity.EmailSetting" useGeneratedKeys="true">
+    insert into email_setting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="senderaddress != null">
+        senderAddress,
+      </if>
+      <if test="senderaccount != null">
+        senderAccount,
+      </if>
+      <if test="senderpassword != null">
+        senderPassword,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="senderaddress != null">
+        #{senderaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="senderaccount != null">
+        #{senderaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="senderpassword != null">
+        #{senderpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aufine.entity.EmailSetting">
+    update email_setting
+    <set>
+      <if test="senderaddress != null">
+        senderAddress = #{senderaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="senderaccount != null">
+        senderAccount = #{senderaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="senderpassword != null">
+        senderPassword = #{senderpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aufine.entity.EmailSetting">
+    update email_setting
+    set senderAddress = #{senderaddress,jdbcType=VARCHAR},
+      senderAccount = #{senderaccount,jdbcType=VARCHAR},
+      senderPassword = #{senderpassword,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
