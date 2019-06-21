@@ -59,7 +59,7 @@ public class CustomerInfoController {
             if(result){
                 EmailSetting emailSetting = emailSettingService.getEmailSetting(1);
                 ajaxResponseBody = customerInfoService.insertCustomer(customerInfo);
-                //customerInfo  将客户填写的数据插入到数据库
+                //customerInfo  将客户填写的数据插入到数据库，获取收件人的邮箱
                 //emailSetting  查询发送邮件的基本信息，比如发件人，授权码。。
                 SendMailText.SendEmail(emailSetting,customerInfo);
                 logger.debug("成功插入数据");
